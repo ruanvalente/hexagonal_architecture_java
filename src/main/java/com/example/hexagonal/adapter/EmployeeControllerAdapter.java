@@ -18,19 +18,23 @@ public class EmployeeControllerAdapter implements EmployeeUIPort {
   private EmployeeService employeeService;
 
   @Override
-  public void create(@RequestBody Employee request) {
-    employeeService.create(request.getName(), request.getRole(), request.getSalary());
+  public void createEmployee(@RequestBody Employee request) {
+    employeeService.createEmployee(request.getName(), request.getRole(),
+            request.getSalary());
   }
 
   @Override
-  public Employee view(@PathVariable Integer id) {
-    Employee employee = employeeService.view(id);
-    return employee;
+  public Employee getEmployeeById(@PathVariable Integer id) {
+    return employeeService.getEmployeeById(id);
   }
 
   @Override
-  public List<Employee> listAll() {
-    List<Employee> employees = employeeService.listAll();
-    return employees;
+  public List<Employee> listAllEmployees() {
+    return employeeService.listAllEmployees();
+  }
+
+  @Override
+  public void removeEmployee(@PathVariable Integer id) {
+     employeeService.removeEmployee(id);
   }
 }

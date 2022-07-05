@@ -23,9 +23,7 @@ public class Employee {
   @Column(name = "salary", nullable = false)
   private long salary;
 
-  public Employee() {
-
-  }
+  public Employee() { }
 
   public Employee(Integer id, String name, String role, long salary) {
     this.id = id;

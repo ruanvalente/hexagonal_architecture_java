@@ -17,7 +17,7 @@ public class EmployeeServiceAdapter implements EmployeeRepositoryPort {
 
   @Transactional
   @Override
-  public void create(String name, String role, long salary) {
+  public void createEmployee(String name, String role, long salary) {
     Employee employee = new Employee();
     employee.setName(name);
     employee.setRole(role);
@@ -27,13 +27,27 @@ public class EmployeeServiceAdapter implements EmployeeRepositoryPort {
   }
 
   @Override
-  public Employee getEmployee(Integer userId) {
+  public Employee getEmployeeById(Integer userId) {
     return entityManager.find(Employee.class, userId);
   }
 
   @Override
-  public List listAllEmployee() {
+  public List listAllEmployees() {
     return entityManager.createNativeQuery("SELECT * from Employee",
             Employee.class).getResultList();
+  }
+
+  @Transactional
+  @Override
+  public boolean removeEmployee(Integer userId) {
+    if (userId != null) {
+      entityManager.createQuery("DELETE FROM Employee WHERE id = ?1")
+              .setParameter(1, userId)
+              .executeUpdate();
+      entityManager.flush();
+
+      return true;
+    }
+    return false;
   }
 }

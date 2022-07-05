@@ -12,15 +12,19 @@ public class EmployeeService {
   @Autowired
   private EmployeeRepositoryPort employeeRepository;
 
-  public void create(String name, String role, long salary) {
-    employeeRepository.create(name, role, salary);
+  public void createEmployee(String name, String role, long salary) {
+    employeeRepository.createEmployee(name, role, salary);
   }
 
-  public Employee view(Integer userId) {
-    return employeeRepository.getEmployee(userId);
+  public Employee getEmployeeById(Integer userId) {
+    return employeeRepository.getEmployeeById(userId);
   }
 
-  public List<Employee> listAll() {
-    return employeeRepository.listAllEmployee();
+  public List<Employee> listAllEmployees() {
+    return employeeRepository.listAllEmployees();
+  }
+
+  public boolean removeEmployee(Integer userId) {
+    return employeeRepository.removeEmployee(userId);
   }
 }
